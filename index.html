@@ -1,27 +1,58 @@
-<!doctype html>
-<head>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
     <title>Triangulate</title>
+
     <!-- Stylesheets -->
+    <link rel="triangulate icon" href="favicon.ico" />
     <link rel="stylesheet" href="styles.css"></link>
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 
     <!-- JS files -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/p5.js"></script>
+    <!-- <script language="javascript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/addons/p5.dom.min.js"></script> -->
     <!-- <script src="https://unpkg.com/delaunator@3.0.2/delaunator.min.js"></script> minified build -->
     <script src="https://unpkg.com/delaunator@3.0.2/delaunator.js"></script> <!-- dev build -->
     <!-- <script src="GrahamScan.js"></script> -->
     <script src="functions.js"></script>
     <script src="sketch.js"></script>
-
-</head>
-<body>
-    <div>
-        <h1>triangulate.</h1>
+  </head>
+    <script>
+      // You can also require other files to run in this process
+      require('./renderer.js')
+      // var remote = require('remote'); // Load remote compnent that contains the dialog dependency
+      // var dialog = remote.require('dialog'); // Load the dialogs component of the OS
+      const {dialog} = require('electron').remote;
+      var fs = require('fs'); // Load the File System to execute our common tasks (CRUD)
+    </script>
+  <body>
+    <!-- <h1>Hello World!</h1> -->
+    <!-- All of the Node.js APIs are available in this renderer process. -->
+    <!-- We are using Node.js <script>document.write(process.versions.node)</script>,
+    Chromium <script>document.write(process.versions.chrome)</script>,
+    and Electron <script>document.write(process.versions.electron)</script>. -->
+    <div id="header_container">
+      <div id="header">
+          <div id="wordmark">
+              <img id="logo" src="assets/penrose-triangle-medium.png">
+              <h1>triangulate.</h1>
+          </div>
+          <div id="instructions">
+              Click to add vertices. <br>
+              Click+X to remove vertices.
+          </div>
+      </div>
     </div>
     <div id="sketch-holder">
-            <!-- Our sketch will go here! -->
-          </div>
-    <div>
-        <button type="button" onclick="makeTriangles()">Triangulate</button>
+        <!-- Our sketch will go here! -->
     </div>
-</body>
+    <div id="buttons">
+        <div class="button" onclick="makeTriangles()">Triangulate</div>
+        <div class="button" onclick="hideTriangles()">Hide triangulation</div>
+        <div class="button" onclick="clearPoints()">Clear points</div>
+        <div class="button" onclick="loadFile()">Upload</div>
+        <!-- <input id="the-file-input" type="file"> -->
+    </div>
+  </body>
+</html>

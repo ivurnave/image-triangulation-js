@@ -114,5 +114,63 @@ function getTriangleColor(img, triangle) {
     return ({
         red, green, blue
     });
-
 }
+
+function clearPoints() {
+    vertices = [];
+    triangleVertices = [];
+    triangles = [];
+    grab_active = false;
+    drawTriangles = false;
+    redraw();
+}
+
+function hideTriangles() {
+    drawTriangles = false;
+    redraw();
+}
+
+function loadFile() {
+    dialog.showOpenDialog((fileNames) => {
+        // fileNames is an array that contains all the selected
+        if(fileNames === undefined){
+            console.log("No file selected");
+            return;
+        }
+        console.log(fileNames[0]);
+        imagePath = fileNames[0];
+
+        preload();
+
+        img = loadImage(imagePath,
+            // success callback
+            ()=>{
+                console.log(img.width, img.height)
+                img.resize(600,0);
+                canvas.resize(img.width, img.height);
+                img.loadPixels();
+                redraw();
+            });
+        // image(img, 0, 0);
+
+        // canvas.parent('sketch-holder');
+        // noLoop();
+
+        // fs.readFile(filepath, 'utf-8', (err, data) => {
+        // //     if(err){
+        // //         alert("An error ocurred reading the file :" + err.message);
+        // //         return;
+        // //     }
+    
+        // //     // Change how to handle the file content
+        // //     console.log("The file content is : " + data);
+        // });
+    });
+}
+
+// checking something with file loading
+// document.querySelector("#the-file-input").files.forEach(file => {
+//     console.log(file)
+// });
+
+// console.log(document.querySelector("#the-file-input"))

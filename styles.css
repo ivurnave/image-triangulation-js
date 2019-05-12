@@ -11,10 +11,55 @@ body {
   
     /* This centers our sketch vertically. */
     /* align-items: center; */
-
+    width: 600px;
     font-family: 'Ubuntu', sans-serif;
+}
+
+/* #header_container {
+    display: flex;
+    justify-content: center;
+} */
+
+#header {
+    display: flex;
+    height: 100px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#wordmark {
+    display: flex;
+}
+
+#logo {
+    width: 80px;
+    height: 80px;
 }
 
 #defaultCanvas0 {
     background-color: burlywood;
+}
+
+#defaultCanvas0:hover {
+    cursor: crosshair;
+}
+
+.button {
+    padding: 5px;
+    border: 1px solid #000000;
+    /* width: auto; */
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+  
+.button:hover {
+    background-color: #222222; /* Green */
+    color: white;
+    cursor: pointer;
+}
+
+#buttons {
+    padding-top: 5px;
+    display: flex;
+    justify-content: space-between;
 }
