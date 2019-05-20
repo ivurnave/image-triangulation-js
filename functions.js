@@ -49,7 +49,6 @@ function triangulate (points) {
     const delaunay = Delaunator.from(points, getX, getY);
     var coordinates = []; // array of 3 point (x,y) tuples
     var triangles = delaunay.triangles;
-    // console.log(delaunay);
     for (let i = 0; i < triangles.length; i += 3) {
         coordinates.push([
             points[triangles[i]],
@@ -57,7 +56,6 @@ function triangulate (points) {
             points[triangles[i + 2]]
         ]);
     }
-    // console.log(coordinates);
     return coordinates;
 }
 
@@ -137,40 +135,21 @@ function loadFile() {
             console.log("No file selected");
             return;
         }
-        console.log(fileNames[0]);
         imagePath = fileNames[0];
-
-        preload();
-
         img = loadImage(imagePath,
             // success callback
             ()=>{
                 console.log(img.width, img.height)
-                img.resize(600,0);
+                // img.resize(600,0);
+                img.resize(windowWidth - 10,0);
                 canvas.resize(img.width, img.height);
                 img.loadPixels();
+                clearPoints();
                 redraw();
             });
-        // image(img, 0, 0);
-
-        // canvas.parent('sketch-holder');
-        // noLoop();
-
-        // fs.readFile(filepath, 'utf-8', (err, data) => {
-        // //     if(err){
-        // //         alert("An error ocurred reading the file :" + err.message);
-        // //         return;
-        // //     }
-    
-        // //     // Change how to handle the file content
-        // //     console.log("The file content is : " + data);
-        // });
     });
 }
 
-// checking something with file loading
-// document.querySelector("#the-file-input").files.forEach(file => {
-//     console.log(file)
-// });
-
-// console.log(document.querySelector("#the-file-input"))
+function saveCanvas() {
+    save();
+}

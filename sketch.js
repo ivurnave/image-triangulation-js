@@ -10,19 +10,17 @@ let radius = 8; // grab radius
 let grab_active = false;
 let remove = false;
 let drawTriangles = false;
-let imagePath = 'assets/indy.JPG';
+let imagePath = 'assets/indy.JPG'; // placeholder
 let canvas;
 
 // Loading files in a blocking way
 function preload() {
-    // img = loadImage('assets/test.JPG');
     img = loadImage(imagePath);
-    // img = loadImage('assets/hand.JPG');
 }
 
-
 function setup() {
-    img.resize(600,0);
+    // img.resize(600,0);
+    img.resize(windowWidth - 10,0);
     canvas = createCanvas(img.width, img.height);
     canvas.parent('sketch-holder');
     img.loadPixels();
@@ -40,8 +38,6 @@ function draw() {
     }
     else {
         triangles.forEach(t => {
-            console.log(t);
-            // noStroke();
             let color = t.color;
             let tri=t.vertices;
             stroke(color.red, color.green, color.blue);
@@ -50,24 +46,6 @@ function draw() {
         })
     }
 }
-
-// function mousePressed() {
-// 	if (vertices.length > 0) {
-// 		for (var i = 0; i < vertices.length; i++) {
-// 			var vertex = vertices[i];
-//             var distance = dist(mouseX, mouseY, vertex.x, vertex.y);
-            
-//             // check if "X" key is down and we are close enough
-// 			if (distance < radius && keyIsDown(88)) {
-//                 console.log("remove");
-//                 remove = true;
-//                 vertices.splice(i,1);
-// 			}
-// 		}
-// 	}
-//   // Prevent default functionality.
-//   return false;
-// }
 
 function mousePressed() {
     if (keyIsDown(88)) remove = true;
@@ -79,7 +57,6 @@ function mousePressed() {
 			if (distance < radius) {
                 // check if "X" key is down
                 if (remove) {
-                    console.log("remove");
                     vertices.splice(i,1);
                 } else {
                     vertex.active = true;
@@ -98,7 +75,6 @@ function mousePressed() {
   return false;
 }
 
-// Run when the mouse/touch is dragging.
 function mouseDragged() {
 	if (vertices.length > 0) {
 		for (var i = 0; i < vertices.length; i++) {
@@ -127,7 +103,6 @@ function mouseReleased() {
     if (vertices.length >= 3) {
         triangleVertices = triangulate(vertices);
     }
-    // console.log(vertices, remove);
 
     remove = false;
     noLoop();

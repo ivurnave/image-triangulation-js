@@ -28,6 +28,10 @@ function createWindow () {
     // when you should delete the corresponding element.
     mainWindow = null
   })
+
+  // mainWindow.on('resize', function () {
+  //   console.log("hello");
+  // })
 }
 
 // This method will be called when Electron has finished
